@@ -21,7 +21,7 @@
 		<h1>login</h1>
 		<input type="text" name="username" id="" placeholder="Username">
 		<input type="password" name="password" id="" placeholder="Password">
-		<h6 class="relogin">${requestScope.erro}</h6>
+		<h6 class="relogin">${requestScope.error}</h6>
 		<input type="submit" value="Logjn">
 	</form>
 
