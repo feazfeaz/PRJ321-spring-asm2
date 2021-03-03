@@ -22,6 +22,6 @@ public class UserBean {
 		this.password = password;
 	}
 	
-	
+	//// class này vứt
 	
 }

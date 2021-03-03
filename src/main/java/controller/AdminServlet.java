@@ -29,7 +29,8 @@ public class AdminServlet extends HttpServlet{
 			System.out.println("req " + req.getAttribute("isAdmin"));
 			System.out.println("ss  ");
 //			req.getRequestDispatcher("/login").forward(req, res);
-			req.getRequestDispatcher("/login").forward(req, res);
+			res.sendRedirect("/MobileShop/login");
+//			req.getRequestDispatcher("/login").forward(req, res);
 		}
 
 	}

@@ -13,6 +13,8 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
+
+
 	<!-- home route -->
 	<servlet>
 		<description></description>
@@ -45,24 +47,53 @@
 		<servlet-name>admin</servlet-name>
 		<url-pattern>/admin</url-pattern>
 	</servlet-mapping>
-	
-	
+
+	<!-- ItemDetail route -->
+	<servlet>
+		<description></description>
+		<servlet-name>ItemDetailServlet</servlet-name>
+		<servlet-class>controller.ItemDetailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ItemDetailServlet</servlet-name>
+		<url-pattern>/detail</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description></description>
+		<servlet-name>SearchServlet</servlet-name>
+		<servlet-class>controller.SearchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchServlet</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description></description>
+		<servlet-name>CartServlet</servlet-name>
+		<servlet-class>controller.CartServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CartServlet</servlet-name>
+		<url-pattern>/cart</url-pattern>
+	</servlet-mapping>
+
+	<!-- <servlet> <description></description> <servlet-name>notfound</servlet-name> 
+		<servlet-class>controller.NotFoundServlet</servlet-class> </servlet> <servlet-mapping> 
+		<servlet-name>notfound</servlet-name> <url-pattern>/not-found</url-pattern> 
+		</servlet-mapping> <servlet> <description></description> <servlet-name>unknown</servlet-name> 
+		<servlet-class>controller.UnknownServlet</servlet-class> </servlet> <servlet-mapping> 
+		<servlet-name>unknown</servlet-name> <url-pattern>/</url-pattern> </servlet-mapping> -->
+
+
+
+
+
 	<!-- admin route <servlet> <description></description> <display-name>admin</display-name> 
 		<servlet-name>admin</servlet-name> <servlet-class>controller.AdminServlet</servlet-class> 
 		</servlet> <servlet-mapping> <servlet-name>admin</servlet-name> <url-pattern>/admin</url-pattern> 
 		</servlet-mapping> -->
-
-
-	<servlet>
-		<description></description>
-		<display-name>ApiSiteInfo</display-name>
-		<servlet-name>ApiSiteInfo</servlet-name>
-		<servlet-class>controller.ApiSiteInfo</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ApiSiteInfo</servlet-name>
-		<url-pattern>/ApiSiteInfo</url-pattern>
-	</servlet-mapping>
 
 	<context-param>
 		<param-name>username</param-name>

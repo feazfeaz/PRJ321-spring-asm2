@@ -3,14 +3,14 @@ package controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import utils.Users;
+import DAO.UserDao;
+import bean.UserModel;
 
 
 public class LoginServlet extends HttpServlet {
@@ -37,14 +37,18 @@ public class LoginServlet extends HttpServlet {
 		String userValue = req.getParameter("username").trim();
 		String passValue = req.getParameter("password").trim();
 		
-		System.out.println("có gi đó sai sai");
+		UserModel userModel = new UserDao().login(userValue, passValue);
 		
-		Users users = Users.getInstance();
+//		System.out.println("có gi đó sai sai, sai cl");
 		if(userValue.isEmpty() || passValue.isEmpty()){
 			req.setAttribute("error", "Dont let empty your username or password!");
 			doGet(req, res);
 			
-		}else if(userValue.equals(users.adminName) && passValue.equals(users.adminPass)){
+		}else if(userModel == null){
+			req.setAttribute("error", "You wrong your username or password!");
+			doGet(req, res);
+			
+		}else if(userModel.getRole() == 1){
 			System.out.println("đúng rồi ");
 			HttpSession httpSession = req.getSession();
 			httpSession.setAttribute("isAdmin", true);
@@ -52,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 			//login as admin
 			req.getRequestDispatcher("/admin").forward(req, res);
 			
-		}else if(userValue.equals(users.userName) && passValue.equals(users.password)){
+		}else{
 			//login as user
 			
 			//set cookie
@@ -65,10 +69,6 @@ public class LoginServlet extends HttpServlet {
 			
 			//redirect
 			req.getRequestDispatcher("index.jsp").forward(req, res);
-			
-		}else{
-			req.setAttribute("error", "You wrong your username or password!");
-			doGet(req, res);
 		}
 	}
 	

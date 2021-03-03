@@ -73,7 +73,12 @@
 
 				<div class="row">
 					<%
-						ArrayList<ProductModel> productDaos = (ArrayList<ProductModel>) request.getAttribute("prods");
+						Object objProd = request.getAttribute("prods");
+						boolean isAddAble = String.valueOf(request.getAttribute("isAddAble")).equals("1");
+						
+						ArrayList<ProductModel> productDaos = (ArrayList<ProductModel>) (objProd != null ? objProd
+								: new ArrayList<ProductModel>());
+						
 						for (int i = 0; i < productDaos.size(); i++) {
 					%>
 					<div class="col-lg-4 col-md-6 mb-4">
@@ -93,11 +98,12 @@
 								</h5>
 								<p class="card-text"><%=productDaos.get(i).getDescription()%></p>
 							</div>
-
 							<div class="card-footer">
 								<small class="text-muted">&#9733; &#9733; &#9733;
 									&#9733; &#9734;</small>
-
+								<%
+									if (isAddAble) {
+								%>
 								<form style="display: inline;" action="/MobileShop/home"
 									method="POST">
 									<input type="hidden" id="custId" name="action" value="addProd">
@@ -108,13 +114,18 @@
 										<i class="fas fa-cart-plus"></i>
 									</button>
 								</form>
-
+								<%
+									}
+								%>
 							</div>
+
 						</div>
 					</div>
 					<%
 						}
 					%>
+					<%=productDaos.size() == 0 ? "</h4>Not found anything like what are you looking for!</h4>" : ""%>
+
 				</div>
 				<!-- /.row -->
 
